@@ -1,4 +1,4 @@
-This is an airplane backend service project. Currently you can only post airplane `modelNumber` and `capacity` at the moment, but I will improve the service even further. feel free to play with the project after cloning it while setting up few things mentioned below.
+This is a base node js project template, which anyone can use as it has been prepared, by keeping some of the most important code principles and project management recommendations. Feel free to change anything. 
 
 
 `src` -> Inside the src folder all the actual source code regarding the project will reside, this will not include any kind of tests. (You might want to make separate tests folder)
@@ -34,19 +34,19 @@ Lets take a look inside the `src` folder
     ```
         PORT=3000
     ```
- - go inside the `src` folder and execute the following command:
+ - In the root directory do
+ ```
+      npm install --save-dev sequelize-cli
+ ```
+ - go inside the `src` folder by doing `cd src` and execute the following command:
     ```
-      npx sequelize init
+      npx sequelize-cli init
     ```
  - By executing the above command you will get migrations and seeders folder along with a config.json inside the config folder. 
  - If you're setting up your development environment, then write the username of your db, password of your db and in dialect mention whatever db you are using for ex: mysql, mariadb etc
  - If you're setting up test or prod environment, make sure you also replace the host with the hosted db url.
 
- - To run the server execute use this command if your node JS's version is old
+ - To run the server execute
  ```
  npm run dev
- ```
- - or you can execute this if its the latest version
- ```
- npm run node
  ```
