@@ -9,44 +9,68 @@ Lets take a look inside the `src` folder
 
  - `routes` -> In the routes folder, we register a route and the corresponding middleware and controllers to it. 
 
- - `middlewares` -> they are just going to intercept the incoming requests where we can write our validators, authenticators etc. 
+ - `middlewares` -> They are just going to intercept the incoming requests where we can write our validators, authenticators etc. 
 
- - `controllers` -> they are kind of the last middlewares as post them you call you business layer to execute the budiness logic. In controllers we just receive the incoming requests and data and then pass it to the business layer, and once business layer returns an output, we structure the API response in controllers and send the output. 
+ - `controllers` -> They are kind of the last middlewares as post them you call your business layer to execute the business logic. In controllers we just receive the incoming requests and data and then pass it to the business layer, and once business layer returns an output, we structure the API response in controllers and send the output. 
 
- - `repositories` -> this folder contains all the logic using which we interact the DB by writing queries, all the raw queries or ORM queries will go here.
+ - `repositories` -> This folder contains all the logic using which we interact the DB by writing queries, all the raw queries or ORM queries will go here.
 
- - `services` -> contains the buiness logic and interacts with repositories for data from the database
+ - `services` -> Contains the business logic and interacts with repositories for data from the database
 
- - `utils` -> contains helper methods, error classes etc.
+ - `utils` -> Contains helper methods, error classes etc.
 
 ### Setup the project
 
  - Download this template from github and open it in your favourite text editor. 
  - Go inside the folder path and execute the following command:
   ```
-  npm install
+      npm install
   ```
  - In the root directory create a `.env` file and add the following env variables
-    ```
-        PORT=<port number of your choice>
-    ```
-    ex: 
-    ```
-        PORT=3000
-    ```
+  ```
+      PORT=<port number of your choice>
+  ```
+      ex: 
+  ```
+      PORT=3000
+  ```
  - In the root directory do
- ```
+  ```
       npm install --save-dev sequelize-cli
- ```
- - go inside the `src` folder by doing `cd src` and execute the following command:
-    ```
+  ```
+ - Go inside the `src` folder by doing `cd src` and execute the following command:
+  ```
       npx sequelize-cli init
-    ```
+  ```
  - By executing the above command you will get migrations and seeders folder along with a config.json inside the config folder. 
  - If you're setting up your development environment, then write the username of your db, password of your db and in dialect mention whatever db you are using for ex: mysql, mariadb etc
  - If you're setting up test or prod environment, make sure you also replace the host with the hosted db url.
+ - After setting up config file, follow further to create a new sequelize based database. `NOTE` make sure you're inside the src path while executing these.
+  ```
+      npx sequelize db:create
+  ```
+  - Now you have created a database, follow the next command to create a table
+  ```
+      npx sequelize model:generate --name Airplane --attributes modelNumber:string,capacity:integer
+  ```
+ - `Note` if you want your table name as anything else, remove "Airplane" and put the name you want to put. Same goes for attributes.
+ - Configure your `airplane.js` file inside the `models` folder to make changes in Javascript level.
+ - Configure the file inside the `migrations` folder (it should look like this: `20240401163905-create-airplane.js`) to make changes in database level.
+ - Now you have successfully created your migration, now in order to apply your migrations execute:
+ ```
+      npx sequelize db:migrate
+ ```
+ - if you have done a/some mistakes, you can undo it by executing:
+ ```
+      npx sequelize db:migrate:undo
+ ```
+
 
  - To run the server execute
  ```
- npm run dev
+      npm run dev
+ ```
+ - Or if your nodeJS version is latest then execute
+ ```
+      npm run node
  ```

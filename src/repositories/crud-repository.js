@@ -8,7 +8,6 @@ class CrudRepository {
     async create(data) {
         console.log("insid crud repository to create an airplane");
         try {
-
             const response = await this.model.create(data);
             return response;
         } catch (error) {
